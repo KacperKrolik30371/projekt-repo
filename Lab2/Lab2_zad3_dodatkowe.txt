@@ -1,0 +1,1 @@
+W podejściu Inmona projekt zaczyna się od integracji danych w centralnej hurtowni danych. Najpierw tworzy się znormalizowany model danych w 3NF, np. encje Klient, Produkt, Faktura i Pozycja faktury wraz z relacjami. Dopiero później na podstawie tej hurtowni buduje się struktury analityczne wykorzystywane do analiz.

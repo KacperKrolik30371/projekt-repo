@@ -1,0 +1,39 @@
+Model logiczny został zaprojektowany w postaci schematu gwiazdy. W centrum znajduje się tabela faktów FactSales, która przechowuje dane sprzedażowe: InvoiceNo, StockCode, CustomerID, InvoiceDate, Quantity, UnitPrice oraz miarę SalesAmount.
+
+Wymiary:
+
+DimCustomer – CustomerID, Country
+DimProduct – StockCode, Description
+DimDate – Date, Year, Month, Day
+
+Ziarnistość danych: jeden wiersz reprezentuje sprzedaż jednego produktu w jednej fakturze.
+
+Przygotowanie danych polegało na usunięciu rekordów z brakującym CustomerID oraz odfiltrowaniu zwrotów (Quantity < 0). Następnie utworzono miarę SalesAmount jako iloczyn Quantity i UnitPrice.
+
+Przykład:
+Quantity = 6, UnitPrice = 2.55
+SalesAmount = 6 × 2.55 = 15.30
+
+Przykładowy kod przygotowania danych:
+
+import pandas as pd
+
+df = pd.read_csv("Online_Retail.csv", encoding="ISO-8859-1")
+
+df = df.dropna(subset=["CustomerID"])
+df = df[df["Quantity"] > 0]
+
+df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
+df["SalesAmount"] = df["Quantity"] * df["UnitPrice"]
+
+Przykładowa analiza sprzedaży według krajów:
+
+sales_country = df.groupby("Country")["SalesAmount"].sum()
+print(sales_country.sort_values(ascending=False))
+
+Przykładowa analiza trendu sprzedaży w czasie:
+
+sales_time = df.groupby(df["InvoiceDate"].dt.to_period("M"))["SalesAmount"].sum()
+print(sales_time)
+
+Schemat gwiazdy został wybrany, ponieważ upraszcza analizę danych. Dane sprzedażowe znajdują się w jednej tabeli faktów, a dane opisowe w tabelach wymiarów, dzięki czemu zapytania analityczne są prostsze i wymagają mniejszej liczby joinów.

@@ -1,0 +1,3 @@
+Podejście Kimballa
+
+Projekt zaczynamy od określenia procesu biznesowego oraz zaprojektowania tabeli faktów i wymiarów. W wyniku powstaje schemat gwiazdy, który jest charakterystyczny dla podejścia Kimballa i jest zoptymalizowany pod analizy OLAP.
