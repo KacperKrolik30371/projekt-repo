@@ -1,0 +1,5 @@
+Dlaczego ten model nie jest wygodny do analiz OLAP?
+Model 3NF jest zoptymalizowany pod systemy transakcyjne, a nie analityczne. Dane są podzielone na wiele tabel, co utrudnia szybkie wykonywanie analiz i agregacji. W OLAP lepiej sprawdzają się prostsze struktury, np. schemat gwiazdy.
+
+Co wymagałoby wielu joinów?
+Aby zrobić analizę sprzedaży trzeba łączyć kilka tabel, np. Invoice, Invoice_Items, Product i Customer. Każde zapytanie analityczne wymaga wielu joinów między tymi tabelami, co zwiększa złożoność zapytań i spowalnia analizę danych.

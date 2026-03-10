@@ -1,0 +1,15 @@
+### Customer
+PK: CustomerID  
+Attributes: CustomerID, Country
+
+### Product
+PK: StockCode  
+Attributes: StockCode, Description, UnitPrice
+
+### Invoice
+PK: InvoiceNo  
+Attributes: InvoiceNo, InvoiceDate, CustomerID
+
+### Country
+PK: Country  
+Attributes: Country
